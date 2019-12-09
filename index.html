@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Extra meta tags -->
+        <meta name="author" content="Maxwell Sherman, Vincent Lombardi">
+        <meta description="Final project - Play with chords!">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Darkly CSS -->
+        <link rel="stylesheet" href="bootstrap.css">
+
+        <!-- ScalesChords API -->
+        <script async type="text/javascript" src="https://www.scales-chords.com/api/scales-chords-api.js"></script>
+
+        <title>ChordTool</title>
+    </head>
+    <body>
+        <!-- Static navbar -->
+        <nav class="navbar navbar-dark navbar-static-top navbar-expand-lg bg-dark">
+                <a class="navbar-brand" href="#">ChordTool</a>
+        </nav>
+
+        <!-- Chord input -->
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="chordInput" placeholder="Chord ex. Cm/M7" aria-label="Chord" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" id="searchButton" type="button">Search</button>
+            </div>
+        </div>
+
+        <!-- ScalesChords API output -->
+        <div class="card" id="outputCard">
+            <!-- Piano diagram -->
+            <ins class="scales_chords_api" id="pianoDiagram" chord="D" instrument="piano"></ins>
+            <!-- Sound button -->
+            <ins class="scales_chords_api" id="pianoSoundDiagram" chord="D" instrument="piano" output="sound"></ins>
+        </div>
+
+        <!-- onClick -->
+        <script>
+            window.addEventListener("load", function () {
+                document.getElementById("searchButton").onclick = searchFunction;
+
+                function searchFunction() {
+                    let chordName = document.getElementById("chordInput");
+                    let outputCard = document.getElementById("outputCard");
+
+                    let piano = outputCard.children[0];
+                    piano.setAttribute("chord", chordName.value);
+                    
+                    let pianoSound = outputCard.children[1];
+                    pianoSound.setAttribute("chord", chordName.value);
+
+                    scales_chords_api_onload();
+                }
+            });
+        </script>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>

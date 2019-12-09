@@ -1,0 +1,17 @@
+/* Maxwell Sherman & Vincent Lombardi
+ * Assignment 4: Mobile & Desktop eCommerce site
+ * CPSC 314-01 Web Development
+ * 2019-11-08
+ */
+
+/* Property order:
+ *  - Positioning (position, z-index, top/left/.., float/clear)
+ *  - Display/Box Model (display, overflow, width, height, padding, border, margin)
+ *  - Color (color, background, opacity)
+ *  - Text (font-family, font-size, font-weight, line-height, text-align, vertical-align)
+ *  - Other (cursor)
+ * 
+ * Order of directions: top, left, right, bottom, top-left, top-right, bottom-left, bottom-right
+ */
+
+ 
