@@ -35,12 +35,11 @@
 
         <!-- Chord input -->
         <div class="input-group mb-3 ">
-            <form id="inputForm">
-                <input type="text" class="form-control" id="chordInput" placeholder="Chord ex. Cm/M7" aria-label="Chord" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" id="searchButton" type="button">Search</button>
-                </div>
-            </form>
+            <input type="text" class="form-control" id="chordInput" placeholder="Chord ex. Cm/M7" aria-label="Chord" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" id="searchButton" type="button">Search</button>
+            </div>
+    
         </div>
 
         <!-- ScalesChords API output -->
@@ -49,7 +48,14 @@
             <ins class="scales_chords_api" chord="D" instrument="piano"></ins>
             <!-- Sound button -->
             <ins class="scales_chords_api" chord="D" instrument="piano" output="sound"></ins>
+
+            <ins class="scales_chords_api" chord="D" instrument="guitar"></ins>
+            
+            <ins class="scales_chords_api" chord="D" instrument="guitar" output="sound"></ins>
         </div>
+
+
+
 
         <!-- onClick -->
         <script>
@@ -58,38 +64,41 @@
                 let outputCard = document.getElementById("outputCard");
                 let piano = outputCard.children[0];
                 let pianoSound = outputCard.children[1];
-                //document.getElementById("myForm").addEventListener("submit", searchFunction);
+                let guitar = outputCard.children[2];
+                let guitarSound = outputCard.children[3];
                 // Search onClick
                 document.getElementById("searchButton").onclick = searchFunction;
-                //document.getElementById("chordInput").onsubmit = searchFunction;
-                document.getElementById("inputForm").onsubmit = searchFunction;
-                //chordName.onsubmit = searchFunction;
-                //document.getElementById("myForm").addEventListener("chordInput", searchFunction);
+                document.getElementById("chordInput").addEventListener("keyup", function(event) {
+                    if (event.keyCode === 13) { // keyCode 13 is enter
+                        searchFunction();
+                    }
+                });
 
 
                 function searchFunction() {
+
                     // Change chord on the piano to our new one
+                    console.log(chordName.value);
                     piano.setAttribute("chord", chordName.value);
                     
                     // Change chord on piano audio to our new one
                     pianoSound.setAttribute("chord", chordName.value);
 
+                    guitar.setAttribute("chord", chordName.value);
+
+                    guitarSound.setAttribute("piano", chordName.value);
+
                     // Refresh the piano and audio button (see the API source)
+                    
+
                     scales_chords_api_onload();
+                    
+
+
+
                 }
-
-                // TODO https://developers.google.com/web/updates/2016/10/capture-stream
-
-                // Visualiser
-                let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                let analyser = audioCtx.createAnalyser();
-                // const audio = new Audio("https://www.scales-chords.com/chord-sounds/snd-piano-chord-D.mp3");
-                // const stream = audio.captureStream();
-                // source = audioCtx.createMediaStreamSource(stream);
-                // source.connect(analyser);
-                // analyser.connect(distortion);
-                // distortion.connect(audioCtx.destination);
             });
+   
         </script>
 
 
